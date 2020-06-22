@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="dbBibliotecaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_Libro">
+          <Key>
+            <PropertyRef Name="idLibro" />
+          </Key>
+          <Property Name="idLibro" Type="int" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="50" />
+          <Property Name="Autor" Type="varchar" MaxLength="50" />
+          <Property Name="ISBN" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Fecha_publicacion" Type="date" />
+          <Property Name="Numero_de_Ejemplares" Type="int" />
+          <Property Name="idCategoria" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Video">
+          <Key>
+            <PropertyRef Name="idVideo" />
+          </Key>
+          <Property Name="idVideo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="titulo" Type="nchar" MaxLength="10" />
+          <Property Name="fecha_publicacion" Type="nchar" MaxLength="10" />
+          <Property Name="duracion_minutos" Type="nchar" MaxLength="10" />
+          <Property Name="idCategoria" Type="int" />
+        </EntityType>
+        <EntityType Name="tblCategoria">
+          <Key>
+            <PropertyRef Name="idCategoria" />
+          </Key>
+          <Property Name="idCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tbl_Libro_tblCategoria">
+          <End Role="tblCategoria" Type="Self.tblCategoria" Multiplicity="0..1" />
+          <End Role="tbl_Libro" Type="Self.tbl_Libro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCategoria">
+              <PropertyRef Name="idCategoria" />
+            </Principal>
+            <Dependent Role="tbl_Libro">
+              <PropertyRef Name="idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Video_tblCategoria">
+          <End Role="tblCategoria" Type="Self.tblCategoria" Multiplicity="0..1" />
+          <End Role="tbl_Video" Type="Self.tbl_Video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCategoria">
+              <PropertyRef Name="idCategoria" />
+            </Principal>
+            <Dependent Role="tbl_Video">
+              <PropertyRef Name="idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbBibliotecaModelStoreContainer">
+          <EntitySet Name="tbl_Libro" EntityType="Self.tbl_Libro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Video" EntityType="Self.tbl_Video" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCategoria" EntityType="Self.tblCategoria" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tbl_Libro_tblCategoria" Association="Self.FK_tbl_Libro_tblCategoria">
+            <End Role="tblCategoria" EntitySet="tblCategoria" />
+            <End Role="tbl_Libro" EntitySet="tbl_Libro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Video_tblCategoria" Association="Self.FK_tbl_Video_tblCategoria">
+            <End Role="tblCategoria" EntitySet="tblCategoria" />
+            <End Role="tbl_Video" EntitySet="tbl_Video" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbBibliotecaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_Libro">
+          <Key>
+            <PropertyRef Name="idLibro" />
+          </Key>
+          <Property Name="idLibro" Type="Int32" Nullable="false" />
+          <Property Name="Titulo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Autor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ISBN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fecha_publicacion" Type="DateTime" Precision="0" />
+          <Property Name="Numero_de_Ejemplares" Type="Int32" />
+          <Property Name="idCategoria" Type="Int32" />
+          <NavigationProperty Name="tblCategoria" Relationship="Self.FK_tbl_Libro_tblCategoria" FromRole="tbl_Libro" ToRole="tblCategoria" />
+        </EntityType>
+        <EntityType Name="tbl_Video">
+          <Key>
+            <PropertyRef Name="idVideo" />
+          </Key>
+          <Property Name="idVideo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="titulo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="fecha_publicacion" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="duracion_minutos" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="idCategoria" Type="Int32" />
+          <NavigationProperty Name="tblCategoria" Relationship="Self.FK_tbl_Video_tblCategoria" FromRole="tbl_Video" ToRole="tblCategoria" />
+        </EntityType>
+        <EntityType Name="tblCategoria">
+          <Key>
+            <PropertyRef Name="idCategoria" />
+          </Key>
+          <Property Name="idCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tbl_Libro" Relationship="Self.FK_tbl_Libro_tblCategoria" FromRole="tblCategoria" ToRole="tbl_Libro" />
+          <NavigationProperty Name="tbl_Video" Relationship="Self.FK_tbl_Video_tblCategoria" FromRole="tblCategoria" ToRole="tbl_Video" />
+        </EntityType>
+        <Association Name="FK_tbl_Libro_tblCategoria">
+          <End Role="tblCategoria" Type="Self.tblCategoria" Multiplicity="0..1" />
+          <End Role="tbl_Libro" Type="Self.tbl_Libro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCategoria">
+              <PropertyRef Name="idCategoria" />
+            </Principal>
+            <Dependent Role="tbl_Libro">
+              <PropertyRef Name="idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Video_tblCategoria">
+          <End Role="tblCategoria" Type="Self.tblCategoria" Multiplicity="0..1" />
+          <End Role="tbl_Video" Type="Self.tbl_Video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCategoria">
+              <PropertyRef Name="idCategoria" />
+            </Principal>
+            <Dependent Role="tbl_Video">
+              <PropertyRef Name="idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbBibliotecaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_Libro" EntityType="Self.tbl_Libro" />
+          <EntitySet Name="tbl_Video" EntityType="Self.tbl_Video" />
+          <EntitySet Name="tblCategoria" EntityType="Self.tblCategoria" />
+          <AssociationSet Name="FK_tbl_Libro_tblCategoria" Association="Self.FK_tbl_Libro_tblCategoria">
+            <End Role="tblCategoria" EntitySet="tblCategoria" />
+            <End Role="tbl_Libro" EntitySet="tbl_Libro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Video_tblCategoria" Association="Self.FK_tbl_Video_tblCategoria">
+            <End Role="tblCategoria" EntitySet="tblCategoria" />
+            <End Role="tbl_Video" EntitySet="tbl_Video" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbBibliotecaModelStoreContainer" CdmEntityContainer="dbBibliotecaEntities">
+          <EntitySetMapping Name="tbl_Libro">
+            <EntityTypeMapping TypeName="dbBibliotecaModel.tbl_Libro">
+              <MappingFragment StoreEntitySet="tbl_Libro">
+                <ScalarProperty Name="idLibro" ColumnName="idLibro" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Autor" ColumnName="Autor" />
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+                <ScalarProperty Name="Fecha_publicacion" ColumnName="Fecha_publicacion" />
+                <ScalarProperty Name="Numero_de_Ejemplares" ColumnName="Numero_de_Ejemplares" />
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Video">
+            <EntityTypeMapping TypeName="dbBibliotecaModel.tbl_Video">
+              <MappingFragment StoreEntitySet="tbl_Video">
+                <ScalarProperty Name="idVideo" ColumnName="idVideo" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="fecha_publicacion" ColumnName="fecha_publicacion" />
+                <ScalarProperty Name="duracion_minutos" ColumnName="duracion_minutos" />
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCategoria">
+            <EntityTypeMapping TypeName="dbBibliotecaModel.tblCategoria">
+              <MappingFragment StoreEntitySet="tblCategoria">
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbBibliotecaModelStoreContainer" CdmEntityContainer="dbBibliotecaEntities">
+    <EntitySetMapping Name="tbl_Libro">
+      <EntityTypeMapping TypeName="dbBibliotecaModel.tbl_Libro">
+        <MappingFragment StoreEntitySet="tbl_Libro">
+          <ScalarProperty Name="idLibro" ColumnName="idLibro" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="Autor" ColumnName="Autor" />
+          <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+          <ScalarProperty Name="Fecha_publicacion" ColumnName="Fecha_publicacion" />
+          <ScalarProperty Name="Numero_de_Ejemplares" ColumnName="Numero_de_Ejemplares" />
+          <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Video">
+      <EntityTypeMapping TypeName="dbBibliotecaModel.tbl_Video">
+        <MappingFragment StoreEntitySet="tbl_Video">
+          <ScalarProperty Name="idVideo" ColumnName="idVideo" />
+          <ScalarProperty Name="titulo" ColumnName="titulo" />
+          <ScalarProperty Name="fecha_publicacion" ColumnName="fecha_publicacion" />
+          <ScalarProperty Name="duracion_minutos" ColumnName="duracion_minutos" />
+          <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCategoria">
+      <EntityTypeMapping TypeName="dbBibliotecaModel.tblCategoria">
+        <MappingFragment StoreEntitySet="tblCategoria">
+          <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

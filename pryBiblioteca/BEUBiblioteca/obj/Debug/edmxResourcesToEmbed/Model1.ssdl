@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbBibliotecaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbl_Libro">
+    <Key>
+      <PropertyRef Name="idLibro" />
+    </Key>
+    <Property Name="idLibro" Type="int" Nullable="false" />
+    <Property Name="Titulo" Type="varchar" MaxLength="50" />
+    <Property Name="Autor" Type="varchar" MaxLength="50" />
+    <Property Name="ISBN" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Fecha_publicacion" Type="date" />
+    <Property Name="Numero_de_Ejemplares" Type="int" />
+    <Property Name="idCategoria" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_Video">
+    <Key>
+      <PropertyRef Name="idVideo" />
+    </Key>
+    <Property Name="idVideo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="titulo" Type="nchar" MaxLength="10" />
+    <Property Name="fecha_publicacion" Type="nchar" MaxLength="10" />
+    <Property Name="duracion_minutos" Type="nchar" MaxLength="10" />
+    <Property Name="idCategoria" Type="int" />
+  </EntityType>
+  <EntityType Name="tblCategoria">
+    <Key>
+      <PropertyRef Name="idCategoria" />
+    </Key>
+    <Property Name="idCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_tbl_Libro_tblCategoria">
+    <End Role="tblCategoria" Type="Self.tblCategoria" Multiplicity="0..1" />
+    <End Role="tbl_Libro" Type="Self.tbl_Libro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCategoria">
+        <PropertyRef Name="idCategoria" />
+      </Principal>
+      <Dependent Role="tbl_Libro">
+        <PropertyRef Name="idCategoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Video_tblCategoria">
+    <End Role="tblCategoria" Type="Self.tblCategoria" Multiplicity="0..1" />
+    <End Role="tbl_Video" Type="Self.tbl_Video" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCategoria">
+        <PropertyRef Name="idCategoria" />
+      </Principal>
+      <Dependent Role="tbl_Video">
+        <PropertyRef Name="idCategoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbBibliotecaModelStoreContainer">
+    <EntitySet Name="tbl_Libro" EntityType="Self.tbl_Libro" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Video" EntityType="Self.tbl_Video" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCategoria" EntityType="Self.tblCategoria" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tbl_Libro_tblCategoria" Association="Self.FK_tbl_Libro_tblCategoria">
+      <End Role="tblCategoria" EntitySet="tblCategoria" />
+      <End Role="tbl_Libro" EntitySet="tbl_Libro" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Video_tblCategoria" Association="Self.FK_tbl_Video_tblCategoria">
+      <End Role="tblCategoria" EntitySet="tblCategoria" />
+      <End Role="tbl_Video" EntitySet="tbl_Video" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

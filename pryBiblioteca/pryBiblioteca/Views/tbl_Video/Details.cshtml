@@ -1,0 +1,50 @@
+﻿@model BEUBiblioteca.tbl_Video
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tbl_Video</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_publicacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_publicacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.duracion_minutos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.duracion_minutos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblCategoria.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblCategoria.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idVideo }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

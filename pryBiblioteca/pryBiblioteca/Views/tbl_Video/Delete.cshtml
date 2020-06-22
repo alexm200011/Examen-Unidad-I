@@ -1,0 +1,56 @@
+﻿@model BEUBiblioteca.tbl_Video
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>tbl_Video</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_publicacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_publicacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.duracion_minutos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.duracion_minutos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblCategoria.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblCategoria.nombre)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -45,6 +45,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -121,6 +127,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\tbl_LibroController.cs" />
+    <Compile Include="Controllers\tbl_VideoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -162,6 +170,16 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\tbl_Libro\Create.cshtml" />
+    <Content Include="Views\tbl_Libro\Delete.cshtml" />
+    <Content Include="Views\tbl_Libro\Details.cshtml" />
+    <Content Include="Views\tbl_Libro\Edit.cshtml" />
+    <Content Include="Views\tbl_Libro\Index.cshtml" />
+    <Content Include="Views\tbl_Video\Create.cshtml" />
+    <Content Include="Views\tbl_Video\Delete.cshtml" />
+    <Content Include="Views\tbl_Video\Details.cshtml" />
+    <Content Include="Views\tbl_Video\Edit.cshtml" />
+    <Content Include="Views\tbl_Video\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -179,6 +197,12 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BEUBiblioteca\BEUBiblioteca.csproj">
+      <Project>{2f471eca-a3a0-4fb7-bbe3-271d8da19abe}</Project>
+      <Name>BEUBiblioteca</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
